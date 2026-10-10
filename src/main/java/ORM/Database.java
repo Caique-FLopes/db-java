@@ -2,55 +2,59 @@ package ORM;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Database {
+    private String url = "jdbc:mysql://localhost:3306/loja";
     private String usuario = "root";
     private String senha = "";
-    private String database = "";
-    private String url = "jdbc:mysql://localhost:3306/loja" + this.database;
 
-    private String tabela;
-    private String query = "";
     private Connection conexao;
     private Statement ponteiro;
 
+    private String tabela;
+    private String query = "";
+
     public Database(String nomeTabela){
+        this.tabela = nomeTabela;
+
         try {
-            this.conexao = DriverManager.getConnection(url, usuario, senha);
-            this.ponteiro = conexao.createStatement();
-            this.tabela = nomeTabela;
-        } catch (Exception e) {
+            this.conexao = DriverManager.getConnection(this.url, this.usuario, this.senha);
+            this.ponteiro = this.conexao.createStatement();
+        } catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public Database select(ArrayList<String> colunas){
-        this.query += "SELECT ";
+    public void conectar(){}
 
-        if (colunas.isEmpty()){
-            colunas.add("*");
+    public Database selecionar(ArrayList<String> nomeColunas){
+        this.query = "SELECT ";
+
+        if(nomeColunas.isEmpty()){
+            nomeColunas.add("*");
         }
 
-        for (int colunaAtual = 0; colunas.size() > colunaAtual ; colunaAtual++){
-            this.query +=  colunas.get(colunaAtual) + " ";
+        for(int indexAtual = 0; nomeColunas.size() > indexAtual; indexAtual++){
+            this.query += nomeColunas.get(indexAtual);
 
-            if (colunaAtual < colunas.size() - 1){
+            if (indexAtual < nomeColunas.size() - 1){
                 this.query += ", ";
             }
         }
 
-        this.query += "FROM " + this.tabela;
-
+        this.query += " FROM " + this.tabela;
         return this;
     }
 
-    public ResultSet execute(){
-        try {
-            this.query +=";";
-            System.out.println(this.query);
-            ResultSet resultado = this.ponteiro.executeQuery(this.query);
-            return resultado;
+    public void criar(){}
+    public void atualizar(){}
+    public void deletar(){}
+
+    public ResultSet executar(){
+        this.query += ";";
+        System.out.println(this.query);
+        try{
+            return this.ponteiro.executeQuery(this.query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
