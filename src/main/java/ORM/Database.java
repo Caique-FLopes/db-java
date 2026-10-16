@@ -1,6 +1,4 @@
 package ORM;
-
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.*;
 
@@ -52,7 +50,7 @@ public class Database {
     }
 
     public Database criar(HashMap<String, Object> colunaValor){
-        this.query += "INSERT INTO " + this.tabela + "(";
+        this.query = "INSERT INTO " + this.tabela + "(";
         int contador = 0;
 
         for (Map.Entry<String, Object> entry : colunaValor.entrySet()){
@@ -77,7 +75,7 @@ public class Database {
         HashMap<String, Object> condicao = new HashMap<>();
         condicao.put("id =", id);
 
-        this.query += "UPDATE FROM " + this.tabela + " SET ";
+        this.query = "UPDATE FROM " + this.tabela + " SET ";
 
         for (Map.Entry<String, Object> entry : camposAlterados.entrySet()){
             this.query += entry.getKey() + " = " + entry.getValue();
