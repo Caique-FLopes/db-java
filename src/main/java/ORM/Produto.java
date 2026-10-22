@@ -20,7 +20,6 @@ public class Produto{
         condicao.put("id =", id);
         return db.selecionar().where(condicao).executarConsulta();
     }
-
     public static ResultSet get_id(ArrayList<String> colunas, int id) {
         HashMap<String, Object> condicao = new HashMap<>();
         condicao.put("id =", id);
