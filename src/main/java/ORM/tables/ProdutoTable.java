@@ -1,12 +1,14 @@
-package ORM;
+package ORM.tables;
+
+import ORM.Database;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Produto{
+public class ProdutoTable {
     protected static final String TABELA = "produto";
-    private static final Database db = new Database(Produto.TABELA);
+    private static final Database db = new Database(ProdutoTable.TABELA);
 
     public static ResultSet find(ArrayList<String> colunas) {
         return db.selecionar(colunas).executarConsulta();
