@@ -1,5 +1,4 @@
-import ORM.entity.Usuario;
-import ORM.tables.ProdutoTable;
+import ORM.entitys.Usuario;
 import ORM.tables.UsuarioTable;
 
 import java.util.*;
@@ -69,6 +68,13 @@ public class Main {
 //                System.out.println(e.getMessage());
 //            }
 //        }
+//        HashMap<String, Object> novoUsuario = new HashMap<>();
+//        novoUsuario.put("nome", "Teste 123");
+//        novoUsuario.put("cpf", "123.456.789-10");
+//        novoUsuario.put("email", "teste@email.com");
+//        novoUsuario.put("telefone", "67 99999-9999");
+//        novoUsuario.put("data_nascimento", "2002-12-15");
+//        UsuarioTable.create(novoUsuario);
 
         ArrayList<Usuario> listaUsuarios = UsuarioTable.find();
 

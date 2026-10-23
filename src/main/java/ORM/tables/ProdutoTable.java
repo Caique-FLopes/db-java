@@ -1,6 +1,6 @@
 package ORM.tables;
 
-import ORM.Database;
+import ORM.database.Database;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

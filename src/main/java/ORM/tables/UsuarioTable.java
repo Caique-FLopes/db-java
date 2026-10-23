@@ -1,7 +1,7 @@
 package ORM.tables;
 
-import ORM.Database;
-import ORM.entity.Usuario;
+import ORM.database.Database;
+import ORM.entitys.Usuario;
 import ORM.mappers.UsuarioMapper;
 
 import java.sql.ResultSet;
@@ -32,10 +32,12 @@ public class UsuarioTable {
         return null;
     }
 
-    public static Usuario get_id(int id) {
+    public static Usuario get_id(int id) throws SQLException {
         HashMap<String, Object> condicao = new HashMap<>();
         condicao.put("id =", id);
-        return db.selecionar().where(condicao).executarConsulta();
+
+        ResultSet res = db.selecionar().where(condicao).executarConsulta();
+        return UsuarioMapper.mapperUnique(res);
     }
     public static ResultSet get_id(ArrayList<String> colunas, int id) {
         HashMap<String, Object> condicao = new HashMap<>();

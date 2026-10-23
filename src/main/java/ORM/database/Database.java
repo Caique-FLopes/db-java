@@ -1,4 +1,4 @@
-package ORM;
+package ORM.database;
 import java.sql.*;
 import java.util.*;
 
@@ -66,7 +66,8 @@ public class Database {
 
             String valorFormatado = (valor instanceof String) ? "'" + valor + "'" : String.valueOf(valor);
 
-            this.query += valorFormatado + ((colunaValor.size() == contador) ? ")" : ",");
+            this.query += valorFormatado;
+            this.query += (colunaValor.size()  == contador/2 ) ? ")" : ",";
         }
 
         return this;
@@ -96,6 +97,8 @@ public class Database {
         this.query += ";";
         System.out.println(this.query);
         try{
+            System.out.println(this.query);
+            this.ponteiro.closeOnCompletion();
             return this.ponteiro.executeQuery(this.query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -108,6 +111,8 @@ public class Database {
         this.query += ";";
         System.out.println(this.query);
         try{
+            System.out.println(this.query);
+            this.ponteiro.closeOnCompletion();
             return this.ponteiro.executeUpdate(this.query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
