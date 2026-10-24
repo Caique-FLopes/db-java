@@ -18,13 +18,13 @@ public class Cpf {
             throw new Exception("CPF não pode ser vazio");
         }
 
-        if (!valor.matches("^\\\\d{3}\\\\.\\\\d{3}\\\\.\\\\d{3}-\\\\d{2}$|^\\\\d{11}$")){
+        if (!valor.matches("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$|^\\d{11}$")){
             throw new Exception("CPF no formato invalido");
         }
         return true;
     }
 
     public String getDigitos(){
-        return this.valor.substring(17, 18);
+        return this.valor.substring(9, 10);
     }
 }

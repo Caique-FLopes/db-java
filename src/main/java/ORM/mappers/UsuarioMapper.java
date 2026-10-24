@@ -10,7 +10,7 @@ public class UsuarioMapper implements Mapper {
     public static ArrayList<Usuario> mapper(ResultSet resultado) throws SQLException {
         ArrayList<Usuario> lista = new ArrayList<>();
 
-        while(resultado.next()){;
+        while(resultado.next()){
             Usuario usuario = new Usuario(resultado.getInt("id"),resultado.getString("nome"), resultado.getString("cpf"), resultado.getString("email"), resultado.getString("telefone"), resultado.getDate("data_nascimento"));
             lista.add(usuario);
         }

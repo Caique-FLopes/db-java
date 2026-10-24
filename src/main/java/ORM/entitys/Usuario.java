@@ -8,10 +8,7 @@ import ORM.values.Telefone;
 import java.util.Date;
 
 public class Usuario {
-//    Cpf cpf;
-//    Email email;
-//    Telefone telefone;
-//    Endereco endereco;
+
     public Integer id;
     public String nome;
     public Cpf cpf;
